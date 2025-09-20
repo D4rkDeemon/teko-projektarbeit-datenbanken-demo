@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Projektarbeit_DemoFrontend.Entities
+{
+    [Table("Kreditor")]
+    public class Vendor
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        [Column("Mail")]
+        public string Email { get; set; }
+
+        [Column("Telefon")]
+        public string Phone { get; set; }
+
+        [Column("Strasse")]
+        public string Address { get; set; }
+
+        [Column("Ort")]
+        public string City { get; set; }
+
+        [Column("Plz")]
+        public string Zip { get; set; }
+
+        [Column("Land")]
+        public string Country { get; set; }
+
+        [Column("Erstellungsdatum")]
+        public DateTime CreationDate { get; set; }
+    }
+}
