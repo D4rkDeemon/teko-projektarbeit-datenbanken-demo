@@ -3,13 +3,13 @@ using Projektarbeit_DemoFrontend.Entity;
 
 namespace Projektarbeit_DemoFrontend.Service
 {
-    public class CustomerService
+    public class ReportTypeService
     {
-        public List<Customer> All()
+        public List<ReportType> All()
         {
             using(var db = new LittleFlowerContext())
             {
-                return db.Customer.ToList();
+                return db.ReportType.ToList();
             }
         }
     }

@@ -1,13 +1,6 @@
-﻿using Projektarbeit_DemoFrontend.Entities;
+﻿using Projektarbeit_DemoFrontend.Entity;
+using Projektarbeit_DemoFrontend.ReportBuilder;
 using Projektarbeit_DemoFrontend.Service;
-using System;
-using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace Projektarbeit_DemoFrontend.Controller
 {
@@ -18,6 +11,8 @@ namespace Projektarbeit_DemoFrontend.Controller
         ArticleService ArticleService = new ArticleService();
         CustomerService CustomerService = new CustomerService();
         VendorService VendorService = new VendorService();
+        ReportTypeService ReportTypeService = new ReportTypeService();
+        ReportService ReportService = new ReportService();
 
         public DemoController()
         {
@@ -27,7 +22,7 @@ namespace Projektarbeit_DemoFrontend.Controller
                     "Alle Artikel anzeigen",
                     "Alle Kunden anzeigen",
                     "Alle Lieferanten anzeigen",
-
+                    "Auswertung erstellen",
 
 
                     "Programm beenden"
@@ -45,6 +40,11 @@ namespace Projektarbeit_DemoFrontend.Controller
 
                     case 2:
                         DisplayAllVendors();
+                        break;
+
+
+                    case 3:
+                        GenerateReport();
                         break;
 
                     default:
@@ -151,6 +151,48 @@ namespace Projektarbeit_DemoFrontend.Controller
             {
                 uiView.Print("An error occured: " + e.Message);
             }
+        }
+
+        private void GenerateReport()
+        {
+            var reportTypes = ReportTypeService.All();
+
+            var reportNames = reportTypes
+                .Select(q => q.Name)
+                .ToList();
+
+            int selectedIndex = uiView.GetSelection(reportNames, "Bitte wählen Sie den zu erstellenden Bericht:");
+
+            var selectedType = reportNames[selectedIndex];
+            Report newReport;
+            string[] headings;
+            
+
+            switch (selectedType)
+            {
+                case ArticlesInStockReportBuilder.ReportName:
+                    newReport = ArticlesInStockReportBuilder.GenerateReport(selectedIndex+1);
+                    //headings = typeof(Article).GetProperties().Select(q => q.Name).ToArray();
+                    break;
+
+                case PendingCustomerReportBuilder.ReportName:
+                    newReport = PendingCustomerReportBuilder.GenerateReport(selectedIndex + 1);
+                    //headings = typeof(Customer).GetProperties().Select(q => q.Name).ToArray();
+                    break;
+
+                case VendorReportBuilder.ReportName:
+                    newReport = VendorReportBuilder.GenerateReport(selectedIndex + 1);
+                    //headings = typeof(Vendor).GetProperties().Select(q => q.Name).ToArray();
+                    break;
+
+                default:
+                    uiView.Print("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
+                    return;
+            }
+
+            ReportService.Save(newReport);
+
+            uiView.Print(selectedType + " erstellt.");
         }
     }
 }

@@ -1,10 +1,5 @@
-﻿using Projektarbeit_DemoFrontend.Entities;
-using System;
-using System.Collections.Generic;
+﻿using Projektarbeit_DemoFrontend.Entity;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projektarbeit_DemoFrontend.DBContext
 {
@@ -12,8 +7,8 @@ namespace Projektarbeit_DemoFrontend.DBContext
     {
         public DbSet<Article> Article { get; set; }
         public DbSet<Customer> Customer { get; set; }
-
         public DbSet<Vendor> Vendor { get; set; }
-
+        public DbSet<Report> Report { get; set; }
+        public DbSet<ReportType> ReportType { get; set; }
     }
 }

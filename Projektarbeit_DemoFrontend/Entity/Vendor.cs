@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Projektarbeit_DemoFrontend.Entities
+namespace Projektarbeit_DemoFrontend.Entity
 {
     [Table("Kreditor")]
     public class Vendor

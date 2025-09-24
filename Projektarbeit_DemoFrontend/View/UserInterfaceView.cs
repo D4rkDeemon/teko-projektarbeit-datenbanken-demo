@@ -1,12 +1,4 @@
-﻿using Projektarbeit_DemoFrontend.Interfaces;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.IO.Pipelines;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Projektarbeit_DemoFrontend.Interface;
 
 namespace Projektarbeit_DemoFrontend.Controller
 {

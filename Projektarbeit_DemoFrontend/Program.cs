@@ -1,6 +1,5 @@
 ﻿using Projektarbeit_DemoFrontend.Controller;
 using Projektarbeit_DemoFrontend.DBContext;
-using Projektarbeit_DemoFrontend.Entities;
 using System.Data.Entity;
 
 namespace Projektarbeit_DemoFrontend
