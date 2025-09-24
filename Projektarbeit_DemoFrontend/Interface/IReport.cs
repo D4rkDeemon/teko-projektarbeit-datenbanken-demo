@@ -6,7 +6,7 @@ namespace Projektarbeit_DemoFrontend.Interface
     {
         public static string ReportName { get; } = "Unbenannter Bericht";
 
-        public static Report GenerateReport(int TypeId)
+        public static void GenerateReport(int TypeId)
         {
             throw new NotSupportedException("GenerateReport must be implemented in derived classes.");
         }

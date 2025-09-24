@@ -166,31 +166,25 @@ namespace Projektarbeit_DemoFrontend.Controller
             var selectedType = reportNames[selectedIndex];
             Report newReport;
             string[] headings;
-            
 
             switch (selectedType)
             {
                 case ArticlesInStockReportBuilder.ReportName:
-                    newReport = ArticlesInStockReportBuilder.GenerateReport(selectedIndex+1);
-                    //headings = typeof(Article).GetProperties().Select(q => q.Name).ToArray();
+                    ArticlesInStockReportBuilder.GenerateReport(selectedIndex+1);
                     break;
 
                 case PendingCustomerReportBuilder.ReportName:
-                    newReport = PendingCustomerReportBuilder.GenerateReport(selectedIndex + 1);
-                    //headings = typeof(Customer).GetProperties().Select(q => q.Name).ToArray();
+                    PendingCustomerReportBuilder.GenerateReport(selectedIndex + 1);
                     break;
 
                 case VendorReportBuilder.ReportName:
-                    newReport = VendorReportBuilder.GenerateReport(selectedIndex + 1);
-                    //headings = typeof(Vendor).GetProperties().Select(q => q.Name).ToArray();
+                    VendorReportBuilder.GenerateReport(selectedIndex + 1);
                     break;
 
                 default:
                     uiView.Print("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
                     return;
             }
-
-            ReportService.Save(newReport);
 
             uiView.Print(selectedType + " erstellt.");
         }

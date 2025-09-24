@@ -1,7 +1,5 @@
-﻿using Projektarbeit_DemoFrontend.Entity;
-using Projektarbeit_DemoFrontend.Interface;
+﻿using Projektarbeit_DemoFrontend.Interface;
 using Projektarbeit_DemoFrontend.Service;
-using System.Text.Json;
 
 namespace Projektarbeit_DemoFrontend.ReportBuilder
 {
@@ -9,17 +7,11 @@ namespace Projektarbeit_DemoFrontend.ReportBuilder
     {
         public const string ReportName = "ABC-Liste aller Artikel im Lager";
 
-        public static Report GenerateReport(int TypeId)
-        {
-            ArticleService articleService = new ArticleService();
-            var allArticles = articleService.All().OrderBy(q => q.Name).ToList();
+        private static StoredProcedureService _storedProcedureService = new StoredProcedureService();
 
-            return new Report()
-            {
-                ReportTypeId = TypeId,
-                CreationDate = DateTime.Now,
-                Content = JsonSerializer.Serialize(allArticles)
-            };
+        public static void GenerateReport(int TypeId)
+        {
+            _storedProcedureService.ExecuteProcedure("Auswertung_ABC-Liste_Artikel_pro_Lager");
         }
     }
 }
